@@ -10,12 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.example.rhmanager.R
+import com.example.rhmanager.TestViewModel
 import com.example.rhmanager.util.Screen
 import kotlinx.coroutines.delay
+import org.koin.androidx.compose.get
+
 
 @Composable
 fun SplashScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: TestViewModel = get()
 ) {
     LaunchedEffect(key1 = true, block = {
         delay(3000)

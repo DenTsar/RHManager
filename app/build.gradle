@@ -76,5 +76,14 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
 
+    //Ktor
+    implementation "io.ktor:ktor-server-core:1.6.2"
+    implementation "io.ktor:ktor-server-netty:1.6.2"
+
+    //Koin
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+
 
 }
