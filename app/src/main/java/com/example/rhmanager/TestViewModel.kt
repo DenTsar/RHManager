@@ -1,8 +1,14 @@
 package com.example.rhmanager
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import androidx.lifecycle.viewModelScope
+import com.example.rhmanager.responses.CurrencyPair
+import io.ktor.client.request.*
+import kotlinx.coroutines.launch
+
 
 class TestViewModel : ViewModel(){
     private val _testState = MutableStateFlow<UIState>(UIState.Empty)
@@ -17,5 +23,14 @@ class TestViewModel : ViewModel(){
         object Error : UIState()
         object Loading : UIState()
         object Empty : UIState()
+    }
+
+    fun getStuff(){
+        viewModelScope.launch {
+            val a = client.get<CurrencyPair>("https://nummus.robinhood.com/currency_pairs")
+            Log.d("Qwer",a.results[0].quote_currency.toString())
+            Log.d("Qwer",a.results[0].asset_currency.toString())
+
+        }
     }
 }
