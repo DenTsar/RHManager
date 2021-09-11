@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
     private val viewModel : TestViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("qwer",BuildConfig.KEYSTORE_PASSWORD)
+        Log.d("qwer",BuildConfig.API_KEY)
 
         lifecycleScope.launchWhenStarted {
             viewModel.testState.collect{

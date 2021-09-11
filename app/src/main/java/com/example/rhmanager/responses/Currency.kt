@@ -3,7 +3,7 @@ package com.example.rhmanager.responses
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AssetCurrency(
+data class Currency(
     val brand_color: String,
     val code: String,
     val id: String,

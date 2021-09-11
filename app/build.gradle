@@ -22,7 +22,7 @@ android {
     }
 
     buildTypes.each {
-        it.buildConfigField 'String', 'KEYSTORE_PASSWORD', KEYSTORE_PASSWORD
+        it.buildConfigField 'String', 'API_KEY', API_KEY
     }
 
     buildTypes {
