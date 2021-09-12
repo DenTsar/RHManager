@@ -5,11 +5,9 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.viewModelScope
-import com.example.rhmanager.responses.APIResult
-import com.example.rhmanager.responses.CurrencyPair
+import com.example.rhmanager.responses.Page
 import com.example.rhmanager.responses.Holding
 import io.ktor.client.request.*
-import io.ktor.http.*
 import kotlinx.coroutines.launch
 
 
@@ -31,7 +29,7 @@ class TestViewModel : ViewModel(){
     fun getStuff(){
         viewModelScope.launch {
             Log.d("qwer",client.attributes.toString())
-            val b = client.get<APIResult<Holding>>("/holdings")
+            val b = client.get<Page<Holding>>("/holdings")
             Log.d("qwert",b.toString())
 //            val a = client.get<APIResult<CurrencyPair>>("https://nummus.robinhood.com/currency_pairs")
 //            Log.d("Qwer",a.results[0].quote_currency.toString())

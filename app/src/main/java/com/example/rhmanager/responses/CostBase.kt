@@ -1,15 +1,23 @@
 package com.example.rhmanager.responses
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class CostBase(
-    val currency_id: String,
-    val direct_cost_basis: String,
-    val direct_quantity: String,
+    @SerialName("currency_id")
+    val currencyId: String,
+    @SerialName("direct_cost_basis")
+    val directCostBasis: String,
+    @SerialName("direct_quantity")
+    val directQuantity: String,
     val id: String,
-    val intraday_cost_basis: String,
-    val intraday_quantity: String,
-    val marked_cost_basis: String,
-    val marked_quantity: String
+    @SerialName("intraday_cost_basis")
+    val intradayCostBasis: String,
+    @SerialName("intraday_quantity")
+    val intradayQuantity: String,
+    @SerialName("marked_cost_basis")
+    val markedCosBasis: String,
+    @SerialName("marked_quantity")
+    val markedQuantity: String
 )

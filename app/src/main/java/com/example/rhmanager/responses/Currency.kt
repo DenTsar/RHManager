@@ -1,10 +1,12 @@
 package com.example.rhmanager.responses
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Currency(
-    val brand_color: String,
+    @SerialName("brand_color")
+    val brandColor: String,
     val code: String,
     val id: String,
     val increment: String,

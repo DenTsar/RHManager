@@ -1,18 +1,26 @@
 package com.example.rhmanager.responses
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class CurrencyPair(
-    val asset_currency: Currency,
-    val display_only: Boolean,
+    @SerialName("asset_currency")
+    val assetCurrency: Currency,
+    @SerialName("displayOnly")
+    val displayOnly: Boolean,
     val id: String,
-    val max_order_size: String,
-    val min_order_price_increment: String,
-    val min_order_quantity_increment: String,
-    val min_order_size: String,
+    @SerialName("max_order_size")
+    val maxOrderSize: String,
+    @SerialName("min_order_price_increment")
+    val minOrderPriceIncrement: String,
+    @SerialName("min_order_quantity_increment")
+    val minOrderQuantityIncrement: String,
+    @SerialName("min_order_size")
+    val minOrderSize: String,
     val name: String,
-    val quote_currency: Currency,
+    @SerialName("quote_currency")
+    val quoteCurrency: Currency,
     val symbol: String,
     val tradability: String
 )
