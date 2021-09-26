@@ -2,43 +2,27 @@ package com.example.rhmanager
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Arrangement.End
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextAlign.Companion.End
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.rhmanager.responses.CurrencyPair
 import com.example.rhmanager.ui.theme.RHManagerTheme
 import com.example.rhmanager.util.Navigation
-import com.example.rhmanager.BuildConfig
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -55,6 +39,7 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
+            client.get("/orders")
         }
 
 
@@ -107,3 +92,9 @@ fun ListItem() {
         }
     }
 }
+
+//@Composable
+//fun StoreScreen() {
+//    val list = viewModel.categoriesList().collectAsState(emptyList())
+//    Log.d("appDebug", list.value.toString()) // Showing always emptyList []
+//}

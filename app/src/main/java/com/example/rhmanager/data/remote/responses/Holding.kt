@@ -1,7 +1,5 @@
-package com.example.rhmanager.responses
+package com.example.rhmanager.data.remote.responses
 
-import com.example.rhmanager.responses.CostBase
-import com.example.rhmanager.responses.Currency
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

@@ -1,4 +1,4 @@
-package com.example.rhmanager.responses
+package com.example.rhmanager.data.remote.responses
 
 
 import kotlinx.serialization.SerialName

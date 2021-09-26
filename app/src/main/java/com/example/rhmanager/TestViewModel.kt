@@ -2,18 +2,21 @@ package com.example.rhmanager
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.viewModelScope
-import com.example.rhmanager.responses.Page
-import com.example.rhmanager.responses.Holding
+import com.example.rhmanager.data.remote.repository.RHApiImpl
+import com.example.rhmanager.data.remote.responses.CryptoOrder
+import com.example.rhmanager.data.remote.responses.Page
+import com.example.rhmanager.data.remote.responses.Holding
 import io.ktor.client.request.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 
 class TestViewModel : ViewModel(){
     private val _testState = MutableStateFlow<UIState>(UIState.Empty)
     val testState : StateFlow<UIState> = _testState
+    val repository  = RHApiImpl()
     
     fun run(key : String){
         
@@ -28,8 +31,10 @@ class TestViewModel : ViewModel(){
 
     fun getStuff(){
         viewModelScope.launch {
-            Log.d("qwer",client.attributes.toString())
-            val b = client.get<Page<Holding>>("/holdings")
+            val a = RHApiImpl()
+//            Log.d("qwer",client.attributes.toString())
+            val b = a.getCryptoOrders()//client.get<Page<Holding>>("/holdings")
+            b.results.asFlow()
             Log.d("qwert",b.toString())
 //            val a = client.get<APIResult<CurrencyPair>>("https://nummus.robinhood.com/currency_pairs")
 //            Log.d("Qwer",a.results[0].quote_currency.toString())
@@ -37,4 +42,11 @@ class TestViewModel : ViewModel(){
 
         }
     }
+//    fun categoriesList(): Flow<CryptoOrder> {
+//        var list: MutableStateFlow<Any> = MutableStateFlow(emptyList())
+//        viewModelScope.launch {
+//            //list = repository.getCryptoOrders().flowOn(Dispatchers.IO)
+//        }
+//        return list
+//    }
 }

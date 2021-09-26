@@ -1,9 +1,8 @@
-package com.example.rhmanager.responses
+package com.example.rhmanager.data.remote.responses
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.math.BigDecimal
 
 @Serializable
 data class MarginBalances(

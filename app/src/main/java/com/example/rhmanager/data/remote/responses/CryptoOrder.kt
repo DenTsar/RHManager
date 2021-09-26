@@ -1,4 +1,4 @@
-package com.example.rhmanager.responses
+package com.example.rhmanager.data.remote.responses
 
 
 import kotlinx.serialization.SerialName
@@ -9,7 +9,7 @@ data class CryptoOrder(
     @SerialName("account_id")
     val accountId: String,
     @SerialName("average_price")
-    val averagePrice: String,
+    val averagePrice: String?,
     @SerialName("cancel_url")
     val cancelUrl: String?,
     @SerialName("created_at")
@@ -18,8 +18,15 @@ data class CryptoOrder(
     val cumulativeQuantity: String,
     @SerialName("currency_pair_id")
     val currencyPairId: String,
+    @SerialName("entered_price")
+    val enteredPrice: String,
+    @SerialName("executions")
     val cryptoExecutions: List<CryptoExecution>,
     val id: String,
+    @SerialName("initiator_id")
+    val initiatorId: String?,
+    @SerialName("initiator_type")
+    val initiatorType: String?,
     @SerialName("last_transaction_at")
     val lastTransactionAt: String,
     val price: String,
