@@ -3,12 +3,7 @@ package com.example.rhmanager
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rhmanager.data.remote.repository.RHApiImpl
-import com.example.rhmanager.data.remote.responses.CryptoOrder
-import com.example.rhmanager.data.remote.responses.Page
-import com.example.rhmanager.data.remote.responses.Holding
-import io.ktor.client.request.*
-import kotlinx.coroutines.Dispatchers
+import com.example.rhmanager.data.remote.repository.RHRepositoryImpl
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -16,7 +11,7 @@ import kotlinx.coroutines.launch
 class TestViewModel : ViewModel(){
     private val _testState = MutableStateFlow<UIState>(UIState.Empty)
     val testState : StateFlow<UIState> = _testState
-    val repository  = RHApiImpl()
+    val repository  = RHRepositoryImpl()
     
     fun run(key : String){
         
@@ -31,7 +26,7 @@ class TestViewModel : ViewModel(){
 
     fun getStuff(){
         viewModelScope.launch {
-            val a = RHApiImpl()
+            val a = RHRepositoryImpl()
 //            Log.d("qwer",client.attributes.toString())
             val b = a.getCryptoOrders()//client.get<Page<Holding>>("/holdings")
             b.results.asFlow()

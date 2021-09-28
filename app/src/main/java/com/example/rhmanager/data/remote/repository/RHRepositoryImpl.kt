@@ -5,7 +5,7 @@ import com.example.rhmanager.data.remote.responses.CryptoOrder
 import com.example.rhmanager.data.remote.responses.Page
 import io.ktor.client.request.*
 
-class RHApiImpl : RHApi {
+class RHRepositoryImpl : RHRepository {
     override suspend fun getCryptoOrders(): Page<CryptoOrder> {
         return client.get("/orders")
     }
