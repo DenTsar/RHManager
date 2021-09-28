@@ -23,7 +23,7 @@ private val okHttpKtor = HttpClient(CIO) {
         header("Authorization", "Bearer "+BuildConfig.API_KEY)
         url {
             protocol = URLProtocol.HTTPS
-            host = "nummus.robinhood.com"
+            host = "api.robinhood.com"
 //            encodedPath = "$basePath$encodedPath"
         }
     }

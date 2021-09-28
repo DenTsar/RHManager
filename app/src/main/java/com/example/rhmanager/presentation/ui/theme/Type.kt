@@ -1,4 +1,4 @@
-package com.example.rhmanager.ui.theme
+package com.example.rhmanager.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

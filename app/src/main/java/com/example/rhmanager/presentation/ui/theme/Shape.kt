@@ -1,4 +1,4 @@
-package com.example.rhmanager.ui.theme
+package com.example.rhmanager.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

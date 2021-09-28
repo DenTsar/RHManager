@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.example.rhmanager.R
-import com.example.rhmanager.TestViewModel
+import com.example.rhmanager.presentation.TestViewModel
 import com.example.rhmanager.util.Screen
 import kotlinx.coroutines.delay
 import org.koin.androidx.compose.get
