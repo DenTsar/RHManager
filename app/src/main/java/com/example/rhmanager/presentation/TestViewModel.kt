@@ -4,8 +4,10 @@ import android.util.Log
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.rhmanager.common.Resource
 import com.example.rhmanager.data.remote.repository.RHRepositoryImpl
 import com.example.rhmanager.data.remote.responses.HistoricalData
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -15,7 +17,7 @@ class TestViewModel : ViewModel(){
     val testState : StateFlow<UIState> = _testState
     val repository  = RHRepositoryImpl()
 
-    var data: HistoricalData? = null
+    val data : MutableState<Resource<HistoricalData>> = mutableStateOf(Resource.Loading())
 
     fun run(key : String){
         
@@ -31,14 +33,15 @@ class TestViewModel : ViewModel(){
     fun getCryptoData(): HistoricalData?{
         var b : HistoricalData? = null
         viewModelScope.launch {
-            b = repository.getCryptoData()
-            Log.d("qwery",b.toString())
+            delay(5000)
+            data.value = Resource.Success(repository.getCryptoData())
+            Log.d("qwery",data.value.data.toString())
         }
-        Log.d("qwery",b.toString())
+        Log.d("qwery",data.value.data.toString())
         return b
     }
 
-    fun getStuff(): HistoricalData? {
+    fun getStuff(){
         var b : HistoricalData? = null
         viewModelScope.launch {
             val a = RHRepositoryImpl()
@@ -49,7 +52,6 @@ class TestViewModel : ViewModel(){
 //            Log.d("Qwer",a.results[0].quote_currency.toString())
 //            Log.d("Qwer",a.results[0].asset_currency.toString())
         }
-        return b
     }
 //    fun categoriesList(): Flow<CryptoOrder> {
 //        var list: MutableStateFlow<Any> = MutableStateFlow(emptyList())

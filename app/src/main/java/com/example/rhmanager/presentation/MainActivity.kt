@@ -32,20 +32,18 @@ import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     private val viewModel : TestViewModel by viewModels()
-    var data : HistoricalData? = null
+    //var data : HistoricalData? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("qwer", BuildConfig.API_KEY)
 
         //However, you need to remember that collecting SharedFlow in the Fragment using lifecycleScope.launch{} is not lifecycle aware — you need to use launchWhenStarted or cancel the job when the app goes to background.
-        val a = TestViewModel()
-        lifecycleScope.launch {
-            delay(5000)
-        }
+        viewModel.getCryptoData()
+
 //        Log.d("qwer",data.toString())
 
 
-        data = viewModel.getStuff()
+        //data = viewModel.getStuff()
         Log.d("qwer",TestViewModel().getStuff().toString())
 
         setContent {
@@ -56,7 +54,7 @@ class MainActivity : ComponentActivity() {
                 ){
                     Navigation()
                 }
-                Graph(a)
+                Graph(viewModel)
             }
         }
     }
@@ -72,7 +70,7 @@ fun Graph(viewModel: TestViewModel) {
             .clip(RoundedCornerShape(25))
             .background(Color(Random.nextInt(), Random.nextInt(), Random.nextInt()))
     ){
-        val data = viewModel.getCryptoData()
+        val data = viewModel.data.value.data
         Log.d("qwer",data.toString())
         Canvas(
             modifier = Modifier.fillMaxSize()
