@@ -23,11 +23,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import com.example.rhmanager.BuildConfig
+import com.example.rhmanager.data.remote.responses.DataPoint
 import com.example.rhmanager.data.remote.responses.HistoricalData
 import com.example.rhmanager.presentation.ui.theme.RHManagerTheme
 import com.example.rhmanager.util.Navigation
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -71,19 +73,25 @@ fun Graph(viewModel: TestViewModel) {
             .background(Color(Random.nextInt(), Random.nextInt(), Random.nextInt()))
     ){
         val data = viewModel.data.value.data
-        Log.d("qwer",data.toString())
+        Log.d("qwer",data?.dataPoints?.size.toString())
         Canvas(
             modifier = Modifier.fillMaxSize()
         ){
             if (data != null) {
-                Log.d("qwer","Zxcv")
-                data.dataPoints.forEach {
-                    Log.d("Qwer","Asdzcxvf")
-                    drawLine(
-                        color=Color.Green,
-                        start = Offset(size.width,y=0f),
-                        end = Offset(x=0f,size.height)
-                    )
+                val width = size.width/data.dataPoints.size
+                var prev : BigDecimal = BigDecimal.ZERO
+                data.dataPoints.forEachIndexed { i: Int, dataPoint: DataPoint ->
+                    if(i%5==0) {
+                        drawLine(
+                            color = Color.Green,
+                            start = Offset(width * i, size.height - prev.toFloat() * 5000),
+                            end = Offset(
+                                width * (i + 1),
+                                size.height - dataPoint.closePrice.toFloat() * 5000
+                            )
+                        )
+                        prev = dataPoint.closePrice.toBigDecimal()
+                    }
                 }
             }
         }

@@ -11,6 +11,6 @@ class RHRepositoryImpl : RHRepository {
         return client.get("/orders")
     }
     override suspend fun getCryptoData() : HistoricalData{
-        return client.get("/marketdata/forex/historicals/1ef78e1b-049b-4f12-90e5-555dcf2fe204/?bounds=24_7&interval=hour&span=month")
+        return client.get("/marketdata/forex/historicals/1ef78e1b-049b-4f12-90e5-555dcf2fe204/?bounds=24_7&interval=hour&span=3month")
     }
 }
