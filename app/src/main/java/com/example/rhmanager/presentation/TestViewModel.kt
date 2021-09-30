@@ -34,25 +34,15 @@ class TestViewModel : ViewModel(){
         var b : HistoricalData? = null
         viewModelScope.launch {
             delay(5000)
-            data.value = Resource.Success(repository.getCryptoData())
+            data.value = Resource.Success(repository.getCryptoData("1ef78e1b-049b-4f12-90e5-555dcf2fe204","24_7","hour","3months"))
+            delay(10000)
+            data.value = Resource.Success(repository.getCryptoData("1ef78e1b-049b-4f12-90e5-555dcf2fe204","24_7","hour","3months"))
             Log.d("qwery",data.value.data.toString())
         }
         Log.d("qwery",data.value.data.toString())
         return b
     }
 
-    fun getStuff(){
-        var b : HistoricalData? = null
-        viewModelScope.launch {
-            val a = RHRepositoryImpl()
-//            Log.d("qwer",client.attributes.toString())
-            b = a.getCryptoData()//client.get<Page<Holding>>("/holdings")
-            Log.d("qwert",b.toString())
-//            val a = client.get<APIResult<CurrencyPair>>("https://nummus.robinhood.com/currency_pairs")
-//            Log.d("Qwer",a.results[0].quote_currency.toString())
-//            Log.d("Qwer",a.results[0].asset_currency.toString())
-        }
-    }
 //    fun categoriesList(): Flow<CryptoOrder> {
 //        var list: MutableStateFlow<Any> = MutableStateFlow(emptyList())
 //        viewModelScope.launch {

@@ -42,12 +42,6 @@ class MainActivity : ComponentActivity() {
         //However, you need to remember that collecting SharedFlow in the Fragment using lifecycleScope.launch{} is not lifecycle aware — you need to use launchWhenStarted or cancel the job when the app goes to background.
         viewModel.getCryptoData()
 
-//        Log.d("qwer",data.toString())
-
-
-        //data = viewModel.getStuff()
-        Log.d("qwer",TestViewModel().getStuff().toString())
-
         setContent {
             RHManagerTheme {
                 Surface(
@@ -80,19 +74,24 @@ fun Graph(viewModel: TestViewModel) {
             if (data != null) {
                 val width = size.width/data.dataPoints.size
                 var prev : BigDecimal = BigDecimal.ZERO
+                var count = 0
+                val max = data.dataPoints.maxByOrNull { it.closePrice }?.closePrice?.toFloat() ?: 0f
+                val min = data.dataPoints.minByOrNull { it.closePrice }?.closePrice?.toFloat() ?: 0f
                 data.dataPoints.forEachIndexed { i: Int, dataPoint: DataPoint ->
                     if(i%5==0) {
                         drawLine(
                             color = Color.Green,
-                            start = Offset(width * i, size.height - prev.toFloat() * 5000),
+                            start = Offset(width * i, size.height-size.height*(prev.toFloat()-min)/(max-min)),
                             end = Offset(
                                 width * (i + 1),
-                                size.height - dataPoint.closePrice.toFloat() * 5000
+                                size.height-size.height*(dataPoint.closePrice.toFloat()-min)/(max-min)
                             )
                         )
                         prev = dataPoint.closePrice.toBigDecimal()
                     }
+                    count++
                 }
+                Log.d("qwerd",count.toString())
             }
         }
     }

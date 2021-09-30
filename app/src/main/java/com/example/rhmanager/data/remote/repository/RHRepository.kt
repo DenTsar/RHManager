@@ -6,5 +6,5 @@ import com.example.rhmanager.data.remote.responses.Page
 
 interface RHRepository {
     suspend fun getCryptoOrders() : Page<CryptoOrder>
-    suspend fun getCryptoData(): HistoricalData
+    suspend fun getCryptoData(id: String, bounds : String, interval : String, span : String): HistoricalData
 }
