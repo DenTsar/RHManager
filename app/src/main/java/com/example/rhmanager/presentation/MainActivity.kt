@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -17,18 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import com.example.rhmanager.BuildConfig
 import com.example.rhmanager.data.remote.responses.DataPoint
-import com.example.rhmanager.data.remote.responses.HistoricalData
 import com.example.rhmanager.presentation.ui.theme.RHManagerTheme
 import com.example.rhmanager.util.Navigation
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import kotlin.random.Random
 
@@ -67,9 +64,19 @@ fun Graph(viewModel: TestViewModel) {
             .background(Color(Random.nextInt(), Random.nextInt(), Random.nextInt()))
     ){
         val data = viewModel.data.value.data
+        val a = viewModel._testState
+        Log.d("asdf",a.toString())
         Log.d("qwer",data?.dataPoints?.size.toString())
         Canvas(
             modifier = Modifier.fillMaxSize()
+                .pointerInput(data){
+                    detectTapGestures {
+                        Log.d("asdf", (it.toString()+(size.width).toString()))
+                        if (data != null) {
+                            Log.d("asdf",data.dataPoints[(it.x/size.width*data.dataPoints.size).toInt()].toString())
+                        }
+                    }
+                }
         ){
             if (data != null) {
                 val width = size.width/data.dataPoints.size
@@ -81,10 +88,10 @@ fun Graph(viewModel: TestViewModel) {
                     if(i%5==0) {
                         drawLine(
                             color = Color.Green,
-                            start = Offset(width * i, size.height-size.height*(prev.toFloat()-min)/(max-min)),
+                            start = Offset(width * i, size.height*(1-(prev.toFloat()-min)/(max-min))),
                             end = Offset(
                                 width * (i + 1),
-                                size.height-size.height*(dataPoint.closePrice.toFloat()-min)/(max-min)
+                                size.height*(1-(dataPoint.closePrice.toFloat()-min)/(max-min))
                             )
                         )
                         prev = dataPoint.closePrice.toBigDecimal()

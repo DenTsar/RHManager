@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
 data class CurrencyPair(
     @SerialName("asset_currency")
     val assetCurrency: Currency,
-    @SerialName("displayOnly")
     val displayOnly: Boolean,
     val id: String,
     @SerialName("max_order_size")

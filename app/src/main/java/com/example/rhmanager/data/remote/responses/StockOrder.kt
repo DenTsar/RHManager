@@ -15,9 +15,9 @@ data class StockOrder(
     @SerialName("cumulative_quantity")
     val cumulativeQuantity: String,
     @SerialName("dollar_based_amount")
-    val dollarBasedAmount: Notional,
+    val dollarBasedAmount: Equity?,
     @SerialName("executed_notional")
-    val notional: Notional,
+    val executedNotional: Equity?,
     val executions: List<Execution>,
     @SerialName("extended_hours")
     val extendedHours: Boolean,
@@ -60,7 +60,7 @@ data class StockOrder(
     val price: String,
     val quantity: String,
     @SerialName("ref_id")
-    val refId: String,
+    val refId: String?,
     @SerialName("reject_reason")
     val rejectReason: String?,
     @SerialName("response_category")
@@ -74,7 +74,7 @@ data class StockOrder(
     @SerialName("time_in_force")
     val timeInForce: String,
     @SerialName("total_notional")
-    val totalNotional: Notional,
+    val totalNotional: Equity,
     val trigger: String,
     val type: String,
     @SerialName("updated_at")

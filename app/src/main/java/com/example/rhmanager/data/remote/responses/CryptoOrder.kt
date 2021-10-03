@@ -20,8 +20,7 @@ data class CryptoOrder(
     val currencyPairId: String,
     @SerialName("entered_price")
     val enteredPrice: String,
-    @SerialName("executions")
-    val cryptoExecutions: List<CryptoExecution>,
+    val executions: List<CryptoExecution>,
     val id: String,
     @SerialName("initiator_id")
     val initiatorId: String?,

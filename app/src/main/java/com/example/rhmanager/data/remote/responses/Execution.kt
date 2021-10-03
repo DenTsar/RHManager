@@ -11,6 +11,8 @@ data class Execution(
     val ipoAccessExecutionRank: String?,
     val price: String,
     val quantity: String,
+    @SerialName("rounded_notional")
+    val roundedNotional: String,
     @SerialName("settlement_date")
     val settlementDate: String,
     val timestamp: String

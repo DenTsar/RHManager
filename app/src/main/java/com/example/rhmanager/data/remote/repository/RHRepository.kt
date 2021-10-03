@@ -1,10 +1,22 @@
 package com.example.rhmanager.data.remote.repository
 
-import com.example.rhmanager.data.remote.responses.CryptoOrder
-import com.example.rhmanager.data.remote.responses.HistoricalData
-import com.example.rhmanager.data.remote.responses.Page
+import com.example.rhmanager.data.remote.responses.*
 
 interface RHRepository {
     suspend fun getCryptoOrders() : Page<CryptoOrder>
-    suspend fun getCryptoData(id: String, bounds : String, interval : String, span : String): HistoricalData
+    suspend fun getHistoricalCryptoData(
+        id: String,
+        bounds: String,
+        interval: String,
+        span: String
+    ): HistoricalStockCrypto
+
+    suspend fun getHistoricalPortfolioData(
+        id: String,
+        bounds: String,
+        interval: String,
+        span: String
+    ): HistoricalPortfolio
+
+    suspend fun getAccountEquities(): AccountEquities
 }

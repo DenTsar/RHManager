@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class HistoricalData(
+data class HistoricalStockCrypto(
     val bounds: String,
     @SerialName("data_points")
     val dataPoints: List<DataPoint>,
